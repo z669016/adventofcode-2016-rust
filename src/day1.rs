@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use euclid::Point2D;
-use crate::day1::LocationDirection::ZERO;
 
 #[derive(Debug, Copy, Clone)]
 enum CommandDirection {
@@ -71,8 +70,8 @@ struct Location {
 impl Location {
     fn origin() -> Location {
         Location {
-            direction: ZERO,
-            point: Point2D::zero(),
+            direction: LocationDirection::ZERO,
+            point: Point2D::origin(),
         }
     }
 
@@ -86,12 +85,12 @@ impl Location {
 
         while distance > 0 {
             distance -= 1;
-            x = match &new_direction {
+            x = match new_direction {
                 LocationDirection::WEST => x - 1,
                 LocationDirection::EAST => x + 1,
                 _ => x,
             };
-            y = match &new_direction {
+            y = match new_direction {
                 LocationDirection::NORTH => y + 1,
                 LocationDirection::SOUTH => y - 1,
                 _ => y,
