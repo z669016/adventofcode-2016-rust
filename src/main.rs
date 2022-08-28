@@ -1,15 +1,40 @@
 use std::fs;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use std::path::Path;
 
 mod day1;
+mod day2;
+
+fn line_from_file(filename: &str) -> String {
+    fs::read_to_string(filename).expect("Unable to read input day 1")
+}
+
+fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
+    let file = File::open(filename).expect("no such file");
+    let buf = BufReader::new(file);
+
+    buf.lines()
+        .map(|l| l.expect("Could not parse line"))
+        .collect()
+}
 
 fn day1() {
     println!("Day 1");
-    let input = fs::read_to_string("./res/input-day1.txt")
-        .expect("Unable to read input day 1");
+    let input = line_from_file("./res/input-day1.txt");
     println!("part 1 - The Easter bunny is {} blocks away.", day1::part1(&input).unwrap());
     println!("part 2 - The Easter bunny is {} blocks away.", day1::part2(&input).unwrap());
 }
 
+fn day2() {
+    println!("Day 2");
+    let input = lines_from_file("./res/input-day2.txt");
+    println!("part 1 - The bathroom code is {}", day2::part1(&input));
+    println!("part 2 - The bathroom code is {}", day2::part2(&input));
+}
+
 fn main() {
     day1();
+    println!();
+    day2();
 }
