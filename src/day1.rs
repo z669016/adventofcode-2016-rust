@@ -8,7 +8,7 @@ enum CommandDirection {
 }
 
 impl CommandDirection {
-    fn of(cd: char) -> CommandDirection {
+    fn from(cd: char) -> CommandDirection {
         if cd == 'R' {
             CommandDirection::RIGHT
         } else {
@@ -24,12 +24,12 @@ struct Command {
 }
 
 impl Command {
-    fn of(text: &str) -> Command {
+    fn from(text: &str) -> Command {
         let cd = text.chars().next().unwrap();
         let distance = text[1..].parse().unwrap();
 
         Command {
-            direction: CommandDirection::of(cd),
+            direction: CommandDirection::from(cd),
             distance,
         }
     }
@@ -114,7 +114,7 @@ pub fn part1(input: &str) -> Result<i32, &str> {
     let mut location = Location::origin();
 
     for part in input.split(", ") {
-        location = *(location.move_to(&Command::of(part)).last().unwrap());
+        location = *(location.move_to(&Command::from(part)).last().unwrap());
     }
 
     Ok(location.manhattan_distance())
@@ -126,7 +126,7 @@ pub fn part2(input: &str) -> Result<i32, &str> {
 
     set.insert(location.point);
     for part in input.split(", ") {
-        let list = location.move_to(&Command::of(part));
+        let list = location.move_to(&Command::from(part));
         for loc in list {
             if !set.insert(loc.point) {
                 return Ok(loc.manhattan_distance());
