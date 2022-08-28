@@ -6,7 +6,7 @@ use std::path::Path;
 mod day1;
 mod day2;
 
-fn line_from_file(filename: &str) -> String {
+fn line_from_file(filename: impl AsRef<Path>) -> String {
     fs::read_to_string(filename).expect("Unable to read input day 1")
 }
 
