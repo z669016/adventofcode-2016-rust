@@ -7,6 +7,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 fn line_from_file(filename: impl AsRef<Path>) -> String {
     fs::read_to_string(filename).expect("Unable to read input day 1")
@@ -49,6 +50,13 @@ fn day4() {
     println!("part 2 - Room for North Pole objects has sector ID {}", day4::part2(&input).unwrap());
 }
 
+fn day5() {
+    println!("Day 5");
+    let input = "abbhdwsy";
+    println!("part 1 - The password is {:?}", day5::part1(&input));
+    println!("part 2 - The password is {:?}", day5::part2(&input));
+}
+
 fn main() {
     day1();
     println!();
@@ -57,4 +65,6 @@ fn main() {
     day3();
     println!();
     day4();
+    println!();
+    day5();
 }
