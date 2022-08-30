@@ -8,6 +8,7 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 
 fn line_from_file(filename: impl AsRef<Path>) -> String {
     fs::read_to_string(filename).expect("Unable to read input day 1")
@@ -57,6 +58,13 @@ fn day5() {
     println!("part 2 - The password is {:?}", day5::part2(&input));
 }
 
+fn day6() {
+    println!("Day 6");
+    let input = lines_from_file("./res/input-day6.txt");
+    println!("part 1 - The error-corrected version of the message being sent is {:?}", day6::part1(&input));
+    println!("part 2 - The original message that Santa is trying to send is {:?}", day6::part2(&input));
+}
+
 fn main() {
     day1();
     println!();
@@ -67,4 +75,6 @@ fn main() {
     day4();
     println!();
     day5();
+    println!();
+    day6();
 }
