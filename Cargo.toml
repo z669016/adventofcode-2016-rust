@@ -11,6 +11,7 @@ grid = "0.8.1"
 regex = "1.6.0"
 lazy_static = "1.4.0"
 md5 = "0.7.0"
+chrono = "0.4.22"
 
 [dev-dependencies]
 rstest = "0.15.0"
