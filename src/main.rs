@@ -6,6 +6,7 @@ use std::path::Path;
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn line_from_file(filename: impl AsRef<Path>) -> String {
     fs::read_to_string(filename).expect("Unable to read input day 1")
@@ -41,10 +42,19 @@ fn day3() {
     println!("part 2 - The number of possible triangles vertically grouped is {}", day3::part2(&input));
 }
 
+fn day4() {
+    println!("Day 4");
+    let input = lines_from_file("./res/input-day4.txt");
+    println!("part 1 - Sum of the sector IDs of the real rooms is {}", day4::part1(&input));
+    println!("part 2 - Room for North Pole objects has sector ID {}", day4::part2(&input).unwrap());
+}
+
 fn main() {
     day1();
     println!();
     day2();
     println!();
     day3();
+    println!();
+    day4();
 }
