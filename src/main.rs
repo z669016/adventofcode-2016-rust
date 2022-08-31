@@ -1,8 +1,5 @@
-use std::fs;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
-use std::path::Path;
 use chrono::{Duration, Local};
+use crate::ioc::{line_from_file, lines_from_file};
 
 mod day1;
 mod day2;
@@ -10,19 +7,8 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
-
-fn line_from_file(filename: impl AsRef<Path>) -> String {
-    fs::read_to_string(filename).expect("Unable to read input day 1")
-}
-
-fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
-    let file = File::open(filename).expect("no such file");
-    let buf = BufReader::new(file);
-
-    buf.lines()
-        .map(|l| l.expect("Could not parse line"))
-        .collect()
-}
+mod day7;
+mod ioc;
 
 fn duration(duration : Duration) -> String {
     format!("{:02}:{:02}:{:02}.{:03}"
@@ -110,6 +96,19 @@ fn day6() {
     println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
 }
 
+fn day7() {
+    println!("Day 7");
+    let input = lines_from_file("./res/input-day7.txt");
+
+    let start = Local::now();
+    println!("part 1 - The number of IPs supporting TLS is {:?}", day7::part1(&input));
+    let step = Local::now();
+    println!("part 2 - The number of IPs supporting SSL is {:?}", day7::part2(&input));
+    let end = Local::now();
+
+    println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
+}
+
 fn main() {
     day1();
     println!();
@@ -122,4 +121,6 @@ fn main() {
     day5();
     println!();
     day6();
+    println!();
+    day7();
 }
