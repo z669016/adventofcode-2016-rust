@@ -1,3 +1,4 @@
+use std::process::Command;
 use chrono::{Duration, Local};
 use crate::ioc::{line_from_file, lines_from_file};
 
@@ -9,6 +10,7 @@ mod day5;
 mod day6;
 mod day7;
 mod ioc;
+mod day8;
 
 fn duration(duration : Duration) -> String {
     format!("{:02}:{:02}:{:02}.{:03}"
@@ -109,6 +111,22 @@ fn day7() {
     println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
 }
 
+fn day8() {
+    println!("Day 8");
+    let input = lines_from_file("./res/input-day8.txt").iter()
+        .map(|line| day8::Command::from(line).unwrap())
+        .collect::<Vec<day8::Command>>();
+
+    let start = Local::now();
+    println!("part 1 - The number of pixels lit is {:?}", day8::part1(&input));
+    let step = Local::now();
+    println!("part 2 - The screen shows:");
+    println!("{}", day8::part2(&input));
+    let end = Local::now();
+
+    println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
+}
+
 fn main() {
     day1();
     println!();
@@ -123,4 +141,6 @@ fn main() {
     day6();
     println!();
     day7();
+    println!();
+    day8();
 }
