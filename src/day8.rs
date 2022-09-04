@@ -70,11 +70,11 @@ impl Screen {
     }
 
     fn rect(&mut self, dx: usize, dy: usize) -> Result<(),String>{
-        if dx < 0 || dx > self.pixels.get(0).unwrap().len() {
+        if dx > self.pixels.get(0).unwrap().len() {
             return Err(format!("Invalid value {} for dx, must be in range 0..{}", dx, self.pixels.get(0).unwrap().len()));
         }
 
-        if dy < 0 || dy > self.pixels.len() {
+        if dy > self.pixels.len() {
             return Err(format!("Invalid value {} for dy, must be in range 0..{}", dy, self.pixels.len()));
         }
 
@@ -93,14 +93,14 @@ impl Screen {
 
     fn rotate_row(&mut self, y: usize, mut dx: usize) -> Result<(), String> {
         let len = self.pixels.len();
-        if y < 0 || y >= len {
+        if y >= len {
             return Err(format!("Invalid row {}, must be 0..{}", y, len));
         }
 
         let row = self.pixels.get_mut(y).unwrap();
         let max = row.len() - 1;
         while dx > 0 {
-            let mut tmp = *row.get(max).unwrap();
+            let tmp = *row.get(max).unwrap();
             for x in (1..row.len()).rev() {
                 *row.get_mut(x).unwrap() = *row.get_mut(x - 1).unwrap();
             }
@@ -114,13 +114,13 @@ impl Screen {
 
     fn rotate_column(&mut self, x: usize, mut dy: usize) -> Result<(), String> {
         let len = self.pixels.get(0).unwrap().len();
-        if x < 0 || x >= len {
+        if x >= len {
             return Err(format!("Invalid column {}, must be 0..{}", x, len));
         }
 
         let max = self.pixels.len() - 1;
         while dy > 0 {
-            let mut tmp = *self.pixels.get(max).unwrap().get(x).unwrap();
+            let tmp = *self.pixels.get(max).unwrap().get(x).unwrap();
 
             for y in (1..self.pixels.len()).rev() {
                 *self.pixels.get_mut(y).unwrap().get_mut(x).unwrap() = *self.pixels.get(y - 1).unwrap().get(x).unwrap();

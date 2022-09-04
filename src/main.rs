@@ -1,4 +1,3 @@
-use std::process::Command;
 use chrono::{Duration, Local};
 use crate::ioc::{line_from_file, lines_from_file};
 
@@ -11,6 +10,7 @@ mod day6;
 mod day7;
 mod ioc;
 mod day8;
+mod day9;
 
 fn duration(duration : Duration) -> String {
     format!("{:02}:{:02}:{:02}.{:03}"
@@ -127,6 +127,19 @@ fn day8() {
     println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
 }
 
+fn day9() {
+    println!("Day 9");
+    let input = line_from_file("./res/input-day9.txt");
+
+    let start = Local::now();
+    println!("part 1 - The size of the decrypted text is {:?}", day9::part1(&input).unwrap());
+    let step = Local::now();
+    println!("part 2 - The size of the decrypted text is {:?}", day9::part2(&input).unwrap());
+    let end = Local::now();
+
+    println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
+}
+
 fn main() {
     day1();
     println!();
@@ -143,4 +156,6 @@ fn main() {
     day7();
     println!();
     day8();
+    println!();
+    day9();
 }
