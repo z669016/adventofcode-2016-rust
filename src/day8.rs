@@ -63,12 +63,6 @@ impl Screen {
         }
     }
 
-    fn with_size(x: usize, y: usize) -> Screen {
-        Screen {
-            pixels: vec![vec![OFF; x]; y],
-        }
-    }
-
     fn rect(&mut self, dx: usize, dy: usize) -> Result<(),String>{
         if dx > self.pixels.get(0).unwrap().len() {
             return Err(format!("Invalid value {} for dx, must be in range 0..{}", dx, self.pixels.get(0).unwrap().len()));
@@ -166,6 +160,15 @@ pub fn part1(input: &Vec<Command>) -> usize {
 pub fn part2(input: &Vec<Command>) -> String {
     let screen = process(input);
     screen.to_string()
+}
+
+#[cfg(test)]
+impl Screen {
+    fn with_size(x: usize, y: usize) -> Screen {
+        Screen {
+            pixels: vec![vec![OFF; x]; y],
+        }
+    }
 }
 
 #[cfg(test)]

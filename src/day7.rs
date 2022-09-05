@@ -25,24 +25,6 @@ impl IP7 {
         return Ok(IP7 { sub });
     }
 
-    fn to_string(&self) -> String {
-        let mut str = String::new();
-
-        let mut hyper = false;
-        for s in &self.sub {
-            if hyper {
-                str.push('[');
-            }
-            str.push_str(&s);
-            if hyper {
-                str.push(']');
-            }
-            hyper = !hyper;
-        }
-
-        str
-    }
-
     fn is_abba(part: &String) -> bool {
         let list: Vec<char> = part.chars().collect();
 
@@ -142,6 +124,28 @@ pub fn part2(input: &Vec<String>) -> usize {
         .map(|text| IP7::from(text).unwrap())
         .filter(|ip| ip.supports_ssl())
         .count()
+}
+
+#[cfg(test)]
+impl IP7 {
+    fn to_string(&self) -> String {
+        let mut str = String::new();
+
+        let mut hyper = false;
+        for s in &self.sub {
+            if hyper {
+                str.push('[');
+            }
+            str.push_str(&s);
+            if hyper {
+                str.push(']');
+            }
+            hyper = !hyper;
+        }
+
+        str
+    }
+
 }
 
 #[cfg(test)]
