@@ -11,6 +11,7 @@ mod day7;
 mod ioc;
 mod day8;
 mod day9;
+mod day10;
 
 fn duration(duration : Duration) -> String {
     format!("{:02}:{:02}:{:02}.{:03}"
@@ -140,6 +141,19 @@ fn day9() {
     println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
 }
 
+fn day10() {
+    println!("Day 10");
+    let input = lines_from_file("./res/input-day10.txt");
+
+    let start = Local::now();
+    println!("part 1 - The number of the bot that is responsible for comparing value-61 microchips with value-17 microchips {:?}", day10::part1(&input).unwrap());
+    let step = Local::now();
+    println!("part 2 - If you multiply together the values of one chip in each of outputs 0, 1, and 2 you get {:?}", day10::part2(&input).unwrap());
+    let end = Local::now();
+
+    println!("Part 1 {:?}, and part 2 {:?}.", duration(step - start), duration(end - step));
+}
+
 fn main() {
     day1();
     println!();
@@ -158,4 +172,6 @@ fn main() {
     day8();
     println!();
     day9();
+    println!();
+    day10();
 }
