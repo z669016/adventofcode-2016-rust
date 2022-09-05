@@ -146,10 +146,8 @@ pub fn part2(input: &Vec<String>) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use regex::Regex;
     use rstest::rstest;
     use crate::day7::IP7;
-    use crate::ioc::lines_from_file;
 
     #[rstest]
     #[case("abba[mnop]qrst")]
